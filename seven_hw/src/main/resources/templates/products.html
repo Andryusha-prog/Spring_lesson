@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Продукты</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Наименование</th>
+                <th>Стоимость</th>
+                <th>Категория</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="p : ${products}">
+                <td th:text="${p.id}"/>
+                <td th:text="${p.name}"/>
+                <td th:text="${p.price}"/>
+                <td th:text="${p.category.title}"/>
+            </tr>
+        </tbody>
+    </table>
+<br>
+<form th:action="@{'/product/show'}" method="post">
+    <table>
+        <tr>
+            <td>MinPrice</td>
+            <td><input type="number" th:name="minPrice"/></td>
+        </tr>
+        <tr>
+            <td>MaxPrice</td>
+            <td><input type="number" th:name="maxPrice"/></td>
+        </tr>
+        <tr>
+            <td><button type="submit">FilterClick</button></td>
+        </tr>
+
+    </table>
+</form>
+
+    <form th:action="@{'/product/show'}" method="get">
+        <table>
+            <tr>
+                <td><button type="submit">CancelFilter</button></td>
+            </tr>
+        </table>
+
+    </form>
+
+</body>
+</html>

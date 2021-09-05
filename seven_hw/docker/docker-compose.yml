@@ -1,0 +1,22 @@
+version: '3.2'
+
+volumes:
+  first-app-postgres:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:9.6
+    container_name: first-app-postgres
+    volumes:
+      - type: volume
+        source: first-app-postgres
+        target: /var/lib/postgresql/dataConfig
+    environment:
+      POSTGRES_DB: first-app
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespass
+    ports:
+      - "5432:5432"
+
+# jdbc:postgresql://localhost:5432/first-app
